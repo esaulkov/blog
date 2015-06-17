@@ -16,9 +16,9 @@ RSpec.describe PollItemController, type: :controller do
     end
   end
 
-  describe "GET #create" do
+  describe "POST #create" do
     it "returns http success" do
-      get :create
+      post :create
       expect(response).to have_http_status(:success)
     end
   end
@@ -30,17 +30,19 @@ RSpec.describe PollItemController, type: :controller do
     end
   end
 
-  describe "GET #update" do
+  describe "PUT #update" do
     it "returns http success" do
-      get :update
+      put :update
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET #destroy" do
-    it "returns http success" do
-      get :destroy
-      expect(response).to have_http_status(:success)
+  describe "DELETE #destroy" do
+    it "destroys the requested poll_item" do
+      poll_item = PollItem.create! valid_attributes
+      expect {
+        delete :destroy, {:id => poll_item.to_param}, valid_session
+      }.to change(PollItem, :count).by(-1)
     end
   end
 

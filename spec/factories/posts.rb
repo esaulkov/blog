@@ -1,7 +1,12 @@
 FactoryGirl.define do
   factory :post do
-    title "MyString"
-    body "MyString"
+    title "Test post"
+    body "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare neque in suscipit lobortis. Curabitur efficitur magna imperdiet massa feugiat tempus ac dignissim metus. Donec vitae mauris nunc. Donec dui lorem, pellentesque non ullamcorper sed, laoreet id tortor. Sed pulvinar lectus ipsum, eget faucibus neque suscipit eu. Integer accumsan mi a ex fermentum, nec aliquam orci scelerisque. Vestibulum vehicula mollis urna, vel fringilla sapien condimentum sit amet. Aliquam facilisis ultricies venenatis. Maecenas in urna justo. In et ipsum porta, sollicitudin odio nec, faucibus ligula. Aenean at arcu volutpat, mollis turpis eget, vulputate neque. Morbi condimentum turpis nec dui bibendum, pharetra lacinia arcu vestibulum.
+
+Fusce finibus mollis lorem, ut ultrices urna malesuada ut. Sed non erat vel ex facilisis molestie tincidunt nec nunc. In id scelerisque urna. Praesent sit amet mauris tincidunt, varius odio et, rutrum sapien. Fusce orci justo, varius quis nunc quis, accumsan vestibulum enim. Curabitur massa felis, cursus eget porttitor nec, lobortis sed arcu. Aenean porttitor vel lacus sit amet ultricies. Mauris sed lectus euismod, volutpat magna ultrices, dignissim lectus. Quisque sapien quam, ultricies id sem in, varius dictum ligula. Ut et mauris ut nulla posuere tempor nec vitae sapien. Suspendisse tincidunt, diam at maximus viverra, turpis turpis mollis tellus, eu euismod dolor nibh et sapien. Morbi nisi nunc, suscipit ut pharetra sed, mollis ut lorem.
+
+Nulla tempor consequat orci, in interdum mauris rhoncus in. Praesent vel neque sit amet sem efficitur convallis. Duis lacinia consectetur mattis. Nam imperdiet mattis dui eget dictum. Integer euismod mauris lorem, at pharetra orci bibendum eu. Etiam ornare ligula vitae aliquam finibus. Fusce mattis, ante nec ultrices commodo, nulla odio ullamcorper neque, et congue massa nisl nec dui. Etiam non ullamcorper turpis. Pellentesque blandit enim sit amet elit tincidunt, et facilisis justo auctor. Cras cursus eget eros sit amet sodales. Aenean vitae ligula enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ultricies risus a felis iaculis condimentum. Duis sodales lobortis nibh. Vivamus ornare sem in ipsum ultricies, nec bibendum quam porttitor. Donec et mi sed turpis luctus pellentesque."
+    association :user
   end
 
 end

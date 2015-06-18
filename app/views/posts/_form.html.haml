@@ -4,6 +4,7 @@
   .form-inputs
     = f.input :title
     = f.input :body
+    = f.input :user_id, as: :hidden, input_html: { value: @user_id }
 
   .form-actions
     = f.button :submit

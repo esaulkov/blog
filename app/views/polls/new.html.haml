@@ -1,5 +1,6 @@
-%h1 New poll
+.col-sm-8{:class => "col-sm-offset-2"}
+  %h1 New poll
 
-= render 'form'
+  = render 'form'
 
-= link_to 'Back', polls_path
+  = link_to 'Back', @post

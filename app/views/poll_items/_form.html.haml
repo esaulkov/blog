@@ -1,0 +1,9 @@
+= simple_form_for([@poll, @poll_item]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :answer
+    = f.input :poll_id, as: :hidden, input_html: { value: @poll.id }
+
+  .form-actions
+    = f.button :submit

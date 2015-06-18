@@ -1,5 +1,6 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:new, :edit]
 
   # GET /polls
   # GET /polls.json
@@ -54,9 +55,10 @@ class PollsController < ApplicationController
   # DELETE /polls/1
   # DELETE /polls/1.json
   def destroy
+    @post = @poll.post
     @poll.destroy
     respond_to do |format|
-      format.html { redirect_to polls_url, notice: 'Poll was successfully destroyed.' }
+      format.html { redirect_to @post, notice: 'Poll was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,9 +68,13 @@ class PollsController < ApplicationController
     def set_poll
       @poll = Poll.find(params[:id])
     end
+    
+    def set_post
+      @post = @poll ? @poll.post : Post.find(params[:post_id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
-      params[:poll]
+      params.require(:poll).permit(:question, :post_id)
     end
 end

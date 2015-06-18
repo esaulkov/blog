@@ -1,7 +1,14 @@
-%h1 Editing post
 
-= render 'form'
+.col-sm-8{class: "col-sm-offset-2"}
+  %h1 Editing post
 
-= link_to 'Show', @post
-\|
-= link_to 'Back', posts_path
+  = render 'form'
+
+  - if @post.poll
+    = link_to 'Edit poll', @post.poll
+  - else
+    = link_to 'Add poll', new_poll_path(:post_id => @post.id)
+  \|
+  = link_to 'Show', @post
+  \|
+  = link_to 'Back', posts_path

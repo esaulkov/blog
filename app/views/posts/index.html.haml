@@ -1,19 +1,42 @@
 %h1 Listing posts
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
-
-  %tbody
-    - @posts.each do |post|
-      %tr
-        %td= link_to 'Show', post
-        %td= link_to 'Edit', edit_post_path(post)
-        %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+- @posts.each do |post|
+  %section
+    .row
+      .col-sm-8
+        %h4= post.title
+        %p
+          = post.body
+        %br
+        - if current_user == post.user
+          = link_to 'Edit', edit_post_path(post)
+          \|
+          = link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      .col-sm-3{class: "col-sm-offset-1"}
+        - if post.poll
+          .panel{:class => "panel-primary"}
+            .panel-heading
+              %strong
+                = post.poll.question
+            .panel-body
+              = simple_form_for @vote, 
+                :url => url_for(:action => 'vote', :controller => 'votes'),
+                :method => 'post' do |f|
+                .form-inputs
+                  = f.input :user_id, 
+                            as: :hidden, 
+                            input_html: { value: @user_id }
+                  = f.association :poll_item, 
+                                  collection: post.poll.poll_items.all, 
+                                  as: :radio_buttons, 
+                                  label_method: lambda { |poll_item| "#{poll_item.answer} (#{poll_item.votes.size})" }, 
+                                  label: false
+              
+                .form-actions
+                  = f.button :submit, 'Vote'            
+          
 %br
 
-= link_to 'New Post', new_post_path
+= link_to 'New Post', new_post_path, class: 'btn btn-primary'      
+ 
+

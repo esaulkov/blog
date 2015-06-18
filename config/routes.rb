@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   root 'posts#index'
   
   resources :posts
-  resources :polls do
+  resources :polls, except: :index do
     resources :poll_items, except: :show
   end
   
-  post 'votes/create'
+  post 'votes/vote'
 
 end
  

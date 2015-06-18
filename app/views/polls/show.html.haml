@@ -1,6 +1,18 @@
-%p#notice= notice
 
-
-= link_to 'Edit', edit_poll_path(@poll)
-\|
-= link_to 'Back', polls_path
+.row
+  .col-sm-4{:class => "col-sm-offset-4"}
+    .panel{:class => "panel-primary"}
+      .panel-heading
+        %strong
+          = @poll.question
+      .panel-body
+        %ul
+        - @poll.poll_items.each do |item|
+          %li
+            = item.answer
+            \(
+            = item.votes.size
+            \)
+      = link_to 'Edit', edit_poll_path(@poll)
+      \|
+      = link_to 'Back', @poll.post

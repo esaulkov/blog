@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :define_user_id, only: [:index, :new]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.includes(:user, poll: [:poll_items]).order(created_at: :desc)
+    @vote = Vote.new
   end
 
   # GET /posts/1
@@ -66,9 +68,13 @@ class PostsController < ApplicationController
     def set_post
       @post = Post.find(params[:id])
     end
+    
+    def define_user_id
+      @user_id = user_signed_in? ? current_user.id : 0
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params[:post]
+      params.require(:post).permit(:title, :body, :user_id)
     end
 end

@@ -1,6 +1,32 @@
-%p#notice= notice
 
+.row
+  .col-sm-8
+    %h1= @post.title
+    %p
+      = @post.body
+    %br
+    - if current_user == @post.user
+      = link_to 'Edit', edit_post_path(@post)
+      \|
+    = link_to 'Back', posts_path
+  .col-sm-3
+    - if @post.poll
+      .panel{:class => "panel-primary"}
+        .panel-heading
+          %strong
+            = @post.poll.question
+        .panel-body
+          %ul
+          - @post.poll.poll_items.each do |item|
+            %li
+              = item.answer
+              \(
+              = item.votes.size
+              \)
+          - if current_user == @post.user
+            = link_to 'Edit poll', edit_poll_path(@post.poll)
+            \|
+            = link_to 'Destroy poll', @post.poll, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    - else
+      %h4= link_to_if(current_user == @post.user, 'Add poll', new_poll_path(:post_id => @post.id))
 
-= link_to 'Edit', edit_post_path(@post)
-\|
-= link_to 'Back', posts_path

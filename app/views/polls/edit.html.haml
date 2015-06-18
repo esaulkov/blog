@@ -1,7 +1,10 @@
-%h1 Editing poll
+.col-sm-8{:class => "col-sm-offset-2"}
+  %h1 Editing poll
 
-= render 'form'
+  = render 'form'
+  
+  = render 'poll_items'
 
-= link_to 'Show', @poll
-\|
-= link_to 'Back', polls_path
+  = link_to 'Show poll', @poll
+  \|
+  = link_to 'Back', @post

@@ -1,0 +1,16 @@
+.row
+  .col-md-12
+    - if notice
+
+      .alert{:class => "alert-info fade in", :role => "alert"}
+        %a{:href => "#", :class => "close", "data-dismiss" => "alert", "aria-label" => "close", :title => "close"}
+          &times;
+        = notice
+
+    - if alert
+
+      .alert{:class => "alert-danger fade in"}
+        %a{:href => "#", :class => "close", "data-dismiss" => "alert", "aria-label" => "close", :title => "close"}
+          &times;
+        = alert
+ 

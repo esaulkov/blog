@@ -1,0 +1,11 @@
+%h4 Poll items
+%ul
+- @poll.poll_items.each do |item|
+  %li
+    = item.answer
+    = link_to 'Edit', edit_poll_poll_item_path(@poll, item)
+    \|
+    = link_to 'Delete', [@poll, item], :method => :delete, :data => { :confirm => 'Are you sure?' }
+%br
+= link_to 'Add item', new_poll_poll_item_path(@poll)
+%br
